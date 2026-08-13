@@ -44,7 +44,7 @@ const programs = [
     description:
       "Connecting healthcare professionals, policymakers, innovators, community leaders, NGOs, corporate partners, and diaspora advocates to advance practical solutions for healthcare access across Africa.",
     image: conferenceImage,
-    href: "/conference",
+    href: "/programs/conference",
   },
 ];
 

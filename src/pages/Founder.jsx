@@ -16,6 +16,11 @@ import Footer from "../components/layout/Footer";
 
 import founderImage from "../assets/images/founder/qha-image--5.jpg";
 
+
+// ============================================================
+// FRAMER MOTION
+// ============================================================
+
 const fadeUp = {
   hidden: {
     opacity: 0,
@@ -31,6 +36,7 @@ const fadeUp = {
     },
   },
 };
+
 
 const fadeLeft = {
   hidden: {
@@ -48,6 +54,7 @@ const fadeLeft = {
   },
 };
 
+
 const fadeRight = {
   hidden: {
     opacity: 0,
@@ -64,6 +71,7 @@ const fadeRight = {
   },
 };
 
+
 const staggerContainer = {
   hidden: {},
 
@@ -74,6 +82,11 @@ const staggerContainer = {
   },
 };
 
+
+// ============================================================
+// LEADERSHIP AREAS
+// ============================================================
+
 const leadershipAreas = [
   {
     number: "01",
@@ -81,18 +94,21 @@ const leadershipAreas = [
     description:
       "A decorated U.S. Marine Corps Combat Veteran whose service includes experience as a former Pentagon Attaché and NCOIC under the Commandant of the Marine Corps.",
   },
+
   {
     number: "02",
     title: "Nonprofit Leadership",
     description:
       "Founder of Quality Health Africa, advancing access to primary healthcare and supporting communities facing significant barriers to care.",
   },
+
   {
     number: "03",
     title: "Global Enterprise",
     description:
       "CEO of SpherePoint Conglomerate Limited, working across infrastructure, agriculture, real estate, and construction management.",
   },
+
   {
     number: "04",
     title: "Community Advocacy",
@@ -101,12 +117,51 @@ const leadershipAreas = [
   },
 ];
 
+
+// ============================================================
+// FOUNDER SNAPSHOT
+// ============================================================
+
+const founderSnapshot = [
+  {
+    value: "15+",
+    title: "Years",
+    description: "Leadership & global experience",
+  },
+
+  {
+    value: "USMC",
+    title: "Combat Veteran",
+    description: "Service, discipline & leadership",
+  },
+
+  {
+    value: "QHA",
+    title: "Founder",
+    description: "Health equity & community impact",
+  },
+];
+
+
+// ============================================================
+// VIDEO
+// ============================================================
+
+const founderVideo = {
+  youtubeId: "R_OIMjRlWBw",
+  title: "The Story of Sergeant Erwin Boateng",
+};
+
+
 function Founder() {
   return (
     <Box bg="qha.warmWhite">
+
       <Navbar />
 
+
       <Box as="main">
+
         {/* =====================================================
             HERO
         ===================================================== */}
@@ -120,17 +175,18 @@ function Founder() {
             xl: 16,
           }}
           pt={{
+            base: 14,
+            md: 18,
+            lg: 20,
+          }}
+          pb={{
             base: 16,
             md: 20,
             lg: 24,
           }}
-          pb={{
-            base: 18,
-            md: 24,
-            lg: 28,
-          }}
         >
           <Box maxW="1500px" mx="auto">
+
             <Grid
               templateColumns={{
                 base: "1fr",
@@ -143,15 +199,26 @@ function Founder() {
               }}
               alignItems="center"
             >
-              {/* TEXT */}
+
+              {/* =================================================
+                  HERO TEXT
+              ================================================= */}
               <GridItem>
                 <motion.div
                   initial="hidden"
                   animate="visible"
                   variants={staggerContainer}
                 >
+
                   <motion.div variants={fadeUp}>
-                    <Flex align="center" gap={4} mb={8}>
+                    <Flex
+                      align="center"
+                      gap={4}
+                      mb={{
+                        base: 6,
+                        md: 8,
+                      }}
+                    >
                       <Text
                         color="qha.red"
                         fontSize="xs"
@@ -169,6 +236,7 @@ function Founder() {
                       />
                     </Flex>
                   </motion.div>
+
 
                   <motion.div variants={fadeUp}>
                     <Heading
@@ -194,6 +262,7 @@ function Founder() {
                     </Heading>
                   </motion.div>
 
+
                   <motion.div variants={fadeUp}>
                     <Text
                       mt={7}
@@ -210,6 +279,7 @@ function Founder() {
                     </Text>
                   </motion.div>
 
+
                   <motion.div variants={fadeUp}>
                     <Text
                       mt={5}
@@ -225,10 +295,14 @@ function Founder() {
                       entrepreneur, global leader, and community advocate.
                     </Text>
                   </motion.div>
+
                 </motion.div>
               </GridItem>
 
-              {/* PORTRAIT */}
+
+              {/* =================================================
+                  PORTRAIT
+              ================================================= */}
               <GridItem>
                 <motion.div
                   initial="hidden"
@@ -243,10 +317,10 @@ function Founder() {
                       md: "30px",
                     }}
                     h={{
-                      base: "480px",
-                      sm: "560px",
-                      md: "650px",
-                      lg: "720px",
+                      base: "460px",
+                      sm: "540px",
+                      md: "620px",
+                      lg: "680px",
                     }}
                   >
                     <Image
@@ -268,8 +342,8 @@ function Founder() {
                       bgGradient="
                         linear(
                           to-t,
-                          rgba(0,0,0,0.38),
-                          rgba(0,0,0,0.02) 55%
+                          rgba(0,0,0,0.42),
+                          rgba(0,0,0,0.02) 58%
                         )
                       "
                     />
@@ -298,12 +372,14 @@ function Founder() {
                   </Box>
                 </motion.div>
               </GridItem>
+
             </Grid>
           </Box>
         </Box>
 
+
         {/* =====================================================
-            BIOGRAPHY
+            BIOGRAPHY / HIS STORY
         ===================================================== */}
         <Box
           as="section"
@@ -317,74 +393,90 @@ function Founder() {
             xl: 16,
           }}
           py={{
-            base: 20,
-            md: 26,
-            lg: 30,
+            base: 16,
+            md: 20,
+            lg: 22,
           }}
         >
           <Box maxW="1500px" mx="auto">
+
+            {/* SECTION LABEL */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={fadeLeft}
+            >
+              <Flex
+                align="center"
+                gap={4}
+                mb={{
+                  base: 8,
+                  md: 10,
+                }}
+              >
+                <Text
+                  color="whiteAlpha.700"
+                  fontSize="xs"
+                  fontWeight="800"
+                  textTransform="uppercase"
+                  letterSpacing="0.2em"
+                >
+                  His Story
+                </Text>
+
+                <Box
+                  w="55px"
+                  h="2px"
+                  bg="qha.red"
+                />
+              </Flex>
+            </motion.div>
+
+
+            {/* =================================================
+                STORY + VIDEO
+            ================================================= */}
             <Grid
               templateColumns={{
                 base: "1fr",
-                lg: "0.65fr 1.35fr",
+                lg: "minmax(0, 1.65fr) minmax(350px, 0.85fr)",
               }}
               gap={{
-                base: 8,
-                lg: 18,
+                base: 12,
+                lg: 14,
+                xl: 18,
               }}
+              alignItems="start"
             >
+
+              {/* =================================================
+                  LEFT — BIOGRAPHY
+              ================================================= */}
               <GridItem>
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
                   viewport={{
                     once: true,
-                    amount: 0.3,
-                  }}
-                  variants={fadeLeft}
-                >
-                  <Flex
-                    align="center"
-                    gap={4}
-                  >
-                    <Text
-                      color="whiteAlpha.700"
-                      fontSize="xs"
-                      fontWeight="800"
-                      textTransform="uppercase"
-                      letterSpacing="0.2em"
-                    >
-                      His Story
-                    </Text>
-
-                    <Box
-                      w="55px"
-                      h="2px"
-                      bg="qha.red"
-                    />
-                  </Flex>
-                </motion.div>
-              </GridItem>
-
-              <GridItem>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{
-                    once: true,
-                    amount: 0.2,
+                    amount: 0.12,
                   }}
                   variants={staggerContainer}
                 >
+
                   <motion.div variants={fadeUp}>
                     <Heading
                       as="h2"
-                      maxW="950px"
+                      maxW="900px"
                       fontSize={{
                         base: "3xl",
                         sm: "4xl",
                         md: "5xl",
-                        lg: "6xl",
+                        lg: "5xl",
+                        xl: "6xl",
                       }}
                       lineHeight="1.08"
                       letterSpacing="-0.04em"
@@ -395,10 +487,11 @@ function Founder() {
                     </Heading>
                   </motion.div>
 
+
                   <motion.div variants={fadeUp}>
                     <Text
                       mt={8}
-                      maxW="920px"
+                      maxW="900px"
                       color="whiteAlpha.800"
                       fontSize={{
                         base: "md",
@@ -416,10 +509,11 @@ function Founder() {
                     </Text>
                   </motion.div>
 
+
                   <motion.div variants={fadeUp}>
                     <Text
                       mt={6}
-                      maxW="920px"
+                      maxW="900px"
                       color="whiteAlpha.800"
                       fontSize={{
                         base: "md",
@@ -435,10 +529,11 @@ function Founder() {
                     </Text>
                   </motion.div>
 
+
                   <motion.div variants={fadeUp}>
                     <Text
                       mt={6}
-                      maxW="920px"
+                      maxW="900px"
                       color="whiteAlpha.800"
                       fontSize={{
                         base: "md",
@@ -449,17 +544,17 @@ function Founder() {
                       His military service includes experience as a
                       former Pentagon Attaché and NCOIC under the
                       Commandant of the Marine Corps. Beyond his military
-                      career, he has led ventures spanning
-                      infrastructure, agriculture, real estate,
-                      construction management, and international
-                      consulting.
+                      career, he has led ventures spanning infrastructure,
+                      agriculture, real estate, construction management,
+                      and international consulting.
                     </Text>
                   </motion.div>
+
 
                   <motion.div variants={fadeUp}>
                     <Text
                       mt={6}
-                      maxW="920px"
+                      maxW="900px"
                       color="white"
                       fontSize={{
                         base: "md",
@@ -474,11 +569,262 @@ function Founder() {
                       estate, and construction management.
                     </Text>
                   </motion.div>
+
                 </motion.div>
               </GridItem>
+
+
+              {/* =================================================
+                  RIGHT — IN HIS OWN WORDS
+              ================================================= */}
+              <GridItem>
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    x: 35,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <Box
+                    position={{
+                      base: "relative",
+                      lg: "sticky",
+                    }}
+                    top={{
+                      lg: "110px",
+                    }}
+                  >
+
+                    {/* VIDEO LABEL */}
+                    <Flex
+                      align="center"
+                      gap={3}
+                      mb={5}
+                    >
+                      <Text
+                        color="qha.red"
+                        fontSize="xs"
+                        fontWeight="800"
+                        textTransform="uppercase"
+                        letterSpacing="0.18em"
+                      >
+                        In His Own Words
+                      </Text>
+
+                      <Box
+                        w="35px"
+                        h="1px"
+                        bg="qha.red"
+                      />
+                    </Flex>
+
+
+                    {/* VIDEO */}
+                    <Box
+                      position="relative"
+                      w="100%"
+                      overflow="hidden"
+                      borderRadius={{
+                        base: "18px",
+                        md: "22px",
+                      }}
+                      bg="gray.900"
+                      boxShadow="0 25px 60px rgba(0,0,0,0.35)"
+                      sx={{
+                        aspectRatio: "16 / 9",
+                      }}
+                    >
+                      <Box
+                        as="iframe"
+                        src={`https://www.youtube-nocookie.com/embed/${founderVideo.youtubeId}?autoplay=1&mute=1&playsinline=1&rel=0`}
+                        title={founderVideo.title}
+                        position="absolute"
+                        inset="0"
+                        w="100%"
+                        h="100%"
+                        border="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </Box>
+
+
+                    {/* VIDEO CAPTION */}
+                    <Text
+                      mt={5}
+                      color="whiteAlpha.600"
+                      fontSize="sm"
+                      lineHeight="1.75"
+                      maxW="440px"
+                    >
+                      Hear directly from our founder about the
+                      experiences, values, and purpose behind Quality
+                      Health Africa.
+                    </Text>
+
+
+                    {/* WHY QHA */}
+                    <Box
+                      mt={8}
+                      pt={7}
+                      borderTop="1px solid"
+                      borderColor="whiteAlpha.300"
+                    >
+                      <Text
+                        color="whiteAlpha.500"
+                        fontSize="10px"
+                        fontWeight="800"
+                        textTransform="uppercase"
+                        letterSpacing="0.18em"
+                      >
+                        Why QHA
+                      </Text>
+
+                      <Text
+                        mt={4}
+                        maxW="440px"
+                        color="white"
+                        fontSize={{
+                          base: "lg",
+                          md: "xl",
+                        }}
+                        lineHeight="1.55"
+                        fontWeight="500"
+                      >
+                        Quality Health Africa brings together a lifetime
+                        of service, leadership, and community building
+                        around one purpose: expanding access to quality
+                        healthcare across underserved African
+                        communities.
+                      </Text>
+
+                      <Text
+                        mt={5}
+                        color="whiteAlpha.500"
+                        fontSize="xs"
+                        fontWeight="700"
+                        textTransform="uppercase"
+                        letterSpacing="0.12em"
+                      >
+                        Erwin Boateng • Founder
+                      </Text>
+                    </Box>
+
+                  </Box>
+                </motion.div>
+              </GridItem>
+
             </Grid>
+
+
+            {/* =================================================
+                FOUNDER SNAPSHOT
+            ================================================= */}
+            <SimpleGrid
+              columns={{
+                base: 1,
+                sm: 3,
+              }}
+              mt={{
+                base: 14,
+                md: 18,
+                lg: 20,
+              }}
+              borderTop="1px solid"
+              borderColor="whiteAlpha.300"
+            >
+              {founderSnapshot.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{
+                    opacity: 0,
+                    y: 25,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.4,
+                  }}
+                  transition={{
+                    duration: 0.65,
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <Box
+                    py={{
+                      base: 7,
+                      md: 9,
+                    }}
+                    px={{
+                      base: 0,
+                      sm: 5,
+                      md: 7,
+                    }}
+                    borderBottom={{
+                      base: "1px solid",
+                      sm: "none",
+                    }}
+                    borderLeft={{
+                      base: "none",
+                      sm: index === 0 ? "none" : "1px solid",
+                    }}
+                    borderColor="whiteAlpha.300"
+                  >
+                    <Text
+                      color="qha.red"
+                      fontSize={{
+                        base: "3xl",
+                        md: "4xl",
+                      }}
+                      lineHeight="1"
+                      fontWeight="700"
+                      letterSpacing="-0.04em"
+                    >
+                      {item.value}
+                    </Text>
+
+                    <Text
+                      mt={4}
+                      color="white"
+                      fontSize="sm"
+                      fontWeight="800"
+                      textTransform="uppercase"
+                      letterSpacing="0.1em"
+                    >
+                      {item.title}
+                    </Text>
+
+                    <Text
+                      mt={2}
+                      color="whiteAlpha.600"
+                      fontSize="sm"
+                      lineHeight="1.6"
+                    >
+                      {item.description}
+                    </Text>
+                  </Box>
+                </motion.div>
+              ))}
+            </SimpleGrid>
+
           </Box>
         </Box>
+
 
         {/* =====================================================
             LEADERSHIP AREAS
@@ -493,12 +839,13 @@ function Founder() {
             xl: 16,
           }}
           py={{
-            base: 20,
-            md: 28,
-            lg: 32,
+            base: 18,
+            md: 24,
+            lg: 28,
           }}
         >
           <Box maxW="1500px" mx="auto">
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -508,8 +855,13 @@ function Founder() {
               }}
               variants={staggerContainer}
             >
+
               <motion.div variants={fadeUp}>
-                <Flex align="center" gap={4} mb={8}>
+                <Flex
+                  align="center"
+                  gap={4}
+                  mb={8}
+                >
                   <Text
                     color="qha.black"
                     fontSize="xs"
@@ -527,6 +879,7 @@ function Founder() {
                   />
                 </Flex>
               </motion.div>
+
 
               <motion.div variants={fadeUp}>
                 <Heading
@@ -546,7 +899,9 @@ function Founder() {
                   Experience built across very different worlds.
                 </Heading>
               </motion.div>
+
             </motion.div>
+
 
             <SimpleGrid
               columns={{
@@ -555,8 +910,8 @@ function Founder() {
                 lg: 4,
               }}
               mt={{
-                base: 14,
-                md: 18,
+                base: 12,
+                md: 16,
               }}
               borderTop="1px solid"
               borderColor="gray.300"
@@ -639,8 +994,10 @@ function Founder() {
                 </motion.div>
               ))}
             </SimpleGrid>
+
           </Box>
         </Box>
+
 
         {/* =====================================================
             QHA PURPOSE
@@ -656,12 +1013,13 @@ function Founder() {
             xl: 16,
           }}
           py={{
-            base: 20,
-            md: 26,
-            lg: 30,
+            base: 18,
+            md: 22,
+            lg: 26,
           }}
         >
           <Box maxW="1500px" mx="auto">
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -721,11 +1079,15 @@ function Founder() {
                 communities depend on.
               </Text>
             </motion.div>
+
           </Box>
         </Box>
+
       </Box>
 
+
       <Footer />
+
     </Box>
   );
 }

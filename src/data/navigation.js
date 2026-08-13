@@ -5,14 +5,12 @@ const navigation = [
       { label: "Who We Are", href: "/about/who-we-are" },
       { label: "Mission", href: "/about/mission" },
       { label: "Founder", href: "/about/founder" },
-      { label: "Board", href: "/about#board" },
       { label: "Partners", href: "/about#partners" },
     ],
   },
 
   {
     label: "Programs",
-    href: "/programs",
     children: [
       {
         label: "Quarterly Health Fairs",
@@ -43,16 +41,11 @@ const navigation = [
   },
 
   {
-    label: "Conferences",
-    href: "/conferences",
-  },
-
-  {
     label: "Stories",
     href: "/stories",
   },
 
-  {
+ /* {
     label: "Get Involved",
     href: "/get-involved",
     children: [
@@ -65,7 +58,7 @@ const navigation = [
         href: "/get-involved#partner",
       },
     ],
-  },
+  }*/,
 
   {
     label: "Contact",

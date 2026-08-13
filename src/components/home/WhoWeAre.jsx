@@ -6,6 +6,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import { Link as RouterLink } from "react-router";
+
 function WhoWeAre() {
   return (
     <Box
@@ -137,7 +139,8 @@ function WhoWeAre() {
 
             {/* LINK */}
             <Link
-              href="/about"
+              as={RouterLink}
+              to="/about/who-we-are"
               display="inline-flex"
               alignItems="center"
               gap={3}

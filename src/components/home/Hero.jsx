@@ -5,36 +5,20 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { Link as RouterLink } from "react-router";
 import { motion } from "framer-motion";
 
-// HERO IMAGES
-import careImage from "../../assets/images/qha-care.jpg";
-import womenImage from "../../assets/images/qha-hero--3.jpg";
-import infrastructureImage from "../../assets/images/qha-hero--1.jpg";
-import communityImage from "../../assets/images/qha-hero--5.jpg";
+// LOCAL HERO VIDEO
+import heroVideo from "../../assets/videos/qha-hero.mp4";
 
-const heroPanels = [
-  {
-    label: "",
-    image: careImage,
-  },
-  {
-    label: "",
-    image: womenImage,
-  },
-  {
-    label: "",
-    image: infrastructureImage,
-  },
-  {
-    label: "",
-    image: communityImage,
-  },
-];
+
+// ============================================================
+// FRAMER MOTION
+// ============================================================
 
 const containerVariants = {
   hidden: {},
+
   visible: {
     transition: {
       staggerChildren: 0.16,
@@ -43,11 +27,13 @@ const containerVariants = {
   },
 };
 
+
 const fadeUp = {
   hidden: {
     opacity: 0,
     y: 30,
   },
+
   visible: {
     opacity: 1,
     y: 0,
@@ -58,201 +44,65 @@ const fadeUp = {
   },
 };
 
-function Hero() {
-  const [activePanel, setActivePanel] = useState(null);
 
+function Hero() {
   return (
     <Box
       as="section"
       position="relative"
-      h={{ base: "78svh", md: "70vh" }}
-      minH={{ base: "620px", md: "600px" }}
+      h={{
+        base: "78svh",
+        md: "78vh",
+        lg: "82vh",
+      }}
+      minH={{
+        base: "620px",
+        md: "620px",
+      }}
+      maxH="900px"
       overflow="hidden"
       bg="qha.black"
     >
+
       {/* =====================================================
-          DESKTOP / TABLET — FOUR IMAGE PANELS
+          LOCAL BACKGROUND VIDEO
       ===================================================== */}
-      <Flex
-        display={{ base: "none", md: "flex" }}
+      <Box
+        as="video"
         position="absolute"
         inset="0"
         w="100%"
         h="100%"
+        objectFit="cover"
+        objectPosition="center"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
       >
-        {heroPanels.map((panel, index) => {
-          const isActive = activePanel === index;
-
-          const anotherIsActive =
-            activePanel !== null && activePanel !== index;
-
-          return (
-            <Box
-              key={index}
-              position="relative"
-              flex={
-                isActive
-                  ? 1.55
-                  : anotherIsActive
-                    ? 0.82
-                    : 1
-              }
-              minW="0"
-              overflow="hidden"
-              cursor="pointer"
-              transition="flex 0.7s cubic-bezier(0.22, 1, 0.36, 1)"
-              onMouseEnter={() => setActivePanel(index)}
-              onMouseLeave={() => setActivePanel(null)}
-            >
-              {/* IMAGE REVEAL */}
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 1.08,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  duration: 1.1,
-                  delay: index * 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                style={{
-                  position: "absolute",
-                  inset: "-5%",
-                }}
-              >
-                <Box
-                  position="absolute"
-                  inset="0"
-                  bgImage={`url(${panel.image})`}
-                  bgSize="cover"
-                  bgPosition="center"
-                  bgRepeat="no-repeat"
-                  transform={
-                    isActive
-                      ? "scale(1.12)"
-                      : "scale(1)"
-                  }
-                  transition="transform 0.9s cubic-bezier(0.22, 1, 0.36, 1)"
-                  willChange="transform"
-                />
-              </motion.div>
-
-              {/* PANEL DARKENING */}
-              <Box
-                position="absolute"
-                inset="0"
-                bg={
-                  isActive
-                    ? "rgba(0, 0, 0, 0.18)"
-                    : anotherIsActive
-                      ? "rgba(0, 0, 0, 0.48)"
-                      : "rgba(0, 0, 0, 0.32)"
-                }
-                transition="background 0.5s ease"
-              />
-
-              {/* COLUMN DIVIDER */}
-              {index !== heroPanels.length - 1 && (
-                <Box
-                  position="absolute"
-                  top="0"
-                  right="0"
-                  h="100%"
-                  w="1px"
-                  bg="whiteAlpha.300"
-                  zIndex="2"
-                  pointerEvents="none"
-                />
-              )}
-
-              {/* PANEL LABEL */}
-              {panel.label && (
-                <Box
-                  position="absolute"
-                  bottom={{ md: 7, lg: 9 }}
-                  left={{ md: 5, lg: 7 }}
-                  right={5}
-                  zIndex="3"
-                  color="white"
-                >
-                  <Text
-                    fontSize="10px"
-                    color="qha.red"
-                    fontWeight="800"
-                    letterSpacing="0.18em"
-                    mb={2}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </Text>
-
-                  <Text
-                    fontSize={{
-                      md: "xs",
-                      lg: "sm",
-                    }}
-                    fontWeight="700"
-                    textTransform="uppercase"
-                    letterSpacing="0.16em"
-                  >
-                    {panel.label}
-                  </Text>
-                </Box>
-              )}
-            </Box>
-          );
-        })}
-      </Flex>
-
-      {/* =====================================================
-          MOBILE BACKGROUND
-      ===================================================== */}
-      <Box
-        display={{ base: "block", md: "none" }}
-        position="absolute"
-        inset="0"
-        overflow="hidden"
-      >
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 1.08,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-          }}
-          transition={{
-            duration: 1.2,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          style={{
-            position: "absolute",
-            inset: "-3%",
-          }}
-        >
-          <Box
-            position="absolute"
-            inset="0"
-            bgImage={`url(${careImage})`}
-            bgSize="cover"
-            bgPosition="center"
-            bgRepeat="no-repeat"
-          />
-        </motion.div>
-
-        <Box
-          position="absolute"
-          inset="0"
-          bg="rgba(0, 0, 0, 0.46)"
+        <source
+          src={heroVideo}
+          type="video/mp4"
         />
       </Box>
 
+
       {/* =====================================================
-          GLOBAL HERO GRADIENT
+          DARK OVERLAY
+      ===================================================== */}
+      <Box
+        position="absolute"
+        inset="0"
+        zIndex="1"
+        bg="rgba(0,0,0,0.25)"
+        pointerEvents="none"
+      />
+
+
+      {/* =====================================================
+          CINEMATIC GRADIENT
       ===================================================== */}
       <Box
         position="absolute"
@@ -261,14 +111,35 @@ function Hero() {
         bgGradient="
           linear(
             to-b,
-            rgba(0,0,0,0.42) 0%,
-            rgba(0,0,0,0.08) 38%,
-            rgba(0,0,0,0.15) 60%,
-            rgba(0,0,0,0.55) 100%
+            rgba(0,0,0,0.46) 0%,
+            rgba(0,0,0,0.12) 32%,
+            rgba(0,0,0,0.18) 58%,
+            rgba(0,0,0,0.68) 100%
           )
         "
         pointerEvents="none"
       />
+
+
+      {/* =====================================================
+          SUBTLE SIDE GRADIENT
+      ===================================================== */}
+      <Box
+        position="absolute"
+        inset="0"
+        zIndex="2"
+        bgGradient="
+          linear(
+            to-r,
+            rgba(0,0,0,0.18),
+            transparent 30%,
+            transparent 70%,
+            rgba(0,0,0,0.12)
+          )
+        "
+        pointerEvents="none"
+      />
+
 
       {/* =====================================================
           HERO CONTENT
@@ -286,30 +157,79 @@ function Hero() {
           lg: 14,
         }}
         pt={{
-          base: "120px",
-          md: "30px",
+          base: "100px",
+          md: "60px",
         }}
         pb={{
           base: 14,
-          md: 120,
+          md: 16,
         }}
         pointerEvents="none"
       >
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           style={{
             width: "100%",
-            maxWidth: "1000px",
+            maxWidth: "1100px",
           }}
         >
+
           <Box
             w="100%"
             textAlign="center"
             color="white"
           >
-            {/* MAIN HEADLINE */}
+
+            {/* =============================================
+                SMALL LABEL
+            ============================================= */}
+            <motion.div variants={fadeUp}>
+              <Flex
+                justify="center"
+                align="center"
+                gap={4}
+                mb={{
+                  base: 6,
+                  md: 7,
+                }}
+              >
+                <Box
+                  w={{
+                    base: "30px",
+                    md: "45px",
+                  }}
+                  h="1px"
+                  bg="qha.red"
+                />
+
+                <Text
+                  color="whiteAlpha.900"
+                  fontSize="10px"
+                  fontWeight="800"
+                  textTransform="uppercase"
+                  letterSpacing="0.2em"
+                >
+                  Quality Health Africa
+                </Text>
+
+                <Box
+                  w={{
+                    base: "30px",
+                    md: "45px",
+                  }}
+                  h="1px"
+                  bg="qha.red"
+                />
+              </Flex>
+            </motion.div>
+
+
+            {/* =============================================
+                MAIN HEADLINE
+            ============================================= */}
             <motion.div variants={fadeUp}>
               <Heading
                 as="h1"
@@ -329,6 +249,7 @@ function Hero() {
                   md: "-0.05em",
                 }}
                 fontWeight="700"
+                textShadow="0 3px 25px rgba(0,0,0,0.28)"
               >
                 Healthcare should
                 <br />
@@ -336,7 +257,10 @@ function Hero() {
               </Heading>
             </motion.div>
 
-            {/* DESCRIPTION */}
+
+            {/* =============================================
+                DESCRIPTION
+            ============================================= */}
             <motion.div variants={fadeUp}>
               <Text
                 mt={{
@@ -355,14 +279,18 @@ function Hero() {
                   md: "1.8",
                 }}
                 color="whiteAlpha.900"
+                textShadow="0 2px 14px rgba(0,0,0,0.3)"
               >
                 Advancing health equity across Africa through direct
-                healthcare, medical resources, sustainable infrastructure,
-                and global collaboration.
+                healthcare, medical resources, sustainable
+                infrastructure, and global collaboration.
               </Text>
             </motion.div>
 
-            {/* CTA BUTTONS */}
+
+            {/* =============================================
+                CTA BUTTONS
+            ============================================= */}
             <motion.div variants={fadeUp}>
               <Flex
                 mt={{
@@ -378,8 +306,12 @@ function Hero() {
                 align="center"
                 pointerEvents="auto"
               >
+
+                {/* PRIMARY CTA */}
                 <Button
-                  bg="qha.red"
+                  as={RouterLink}
+                  to="/about/mission"
+                  bg="red"
                   color="white"
                   borderRadius="full"
                   px={9}
@@ -394,7 +326,7 @@ function Hero() {
                     bg: "qha.redDark",
                     transform: "translateY(-2px)",
                     boxShadow:
-                      "0 12px 30px rgba(0,0,0,0.18)",
+                      "0 12px 30px rgba(0,0,0,0.25)",
                   }}
                   _active={{
                     transform: "translateY(0)",
@@ -404,7 +336,11 @@ function Hero() {
                   Explore Our Work
                 </Button>
 
+
+                {/* SECONDARY CTA */}
                 <Button
+                  as={RouterLink}
+                  to="/stories"
                   variant="outline"
                   border="1px solid"
                   borderColor="whiteAlpha.700"
@@ -423,7 +359,7 @@ function Hero() {
                   _hover={{
                     bg: "white",
                     borderColor: "white",
-                    color: "qha.black",
+                    color: "black",
                     transform: "translateY(-2px)",
                   }}
                   _active={{
@@ -433,11 +369,68 @@ function Hero() {
                 >
                   Watch Our Story
                 </Button>
+
               </Flex>
             </motion.div>
+
           </Box>
         </motion.div>
       </Flex>
+
+
+      {/* =====================================================
+          BOTTOM DETAIL
+      ===================================================== */}
+      <Flex
+        display={{
+          base: "none",
+          md: "flex",
+        }}
+        position="absolute"
+        zIndex="5"
+        left={{
+          md: 10,
+          lg: 14,
+        }}
+        right={{
+          md: 10,
+          lg: 14,
+        }}
+        bottom={7}
+        align="center"
+        justify="space-between"
+        pointerEvents="none"
+      >
+
+        <Text
+          color="whiteAlpha.600"
+          fontSize="10px"
+          fontWeight="700"
+          textTransform="uppercase"
+          letterSpacing="0.16em"
+        >
+          Quality Health Africa
+        </Text>
+
+
+        <Flex
+          align="center"
+          gap={3}
+        >
+
+          <Text
+            color="whiteAlpha.600"
+            fontSize="10px"
+            fontWeight="700"
+            textTransform="uppercase"
+            letterSpacing="0.16em"
+          >
+            Health Equity In Action
+          </Text>
+        </Flex>
+
+      </Flex>
+
     </Box>
   );
 }

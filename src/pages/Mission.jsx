@@ -13,19 +13,17 @@ import { motion } from "framer-motion";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
-// ------------------------------------------------------------
-// TEMPORARY IMAGES
-// Replace these with dedicated mission images when available.
-// ------------------------------------------------------------
-import missionHeroImage from "../assets/images/impact/qha-image--1.jpg";
+
+
 import missionCareImage from "../assets/images/impact/qha-image--2.jpg";
 import missionInfrastructureImage from "../assets/images/qha-hero--1.jpg";
 import missionImage from "../assets/images/impact/qha-image--9.jpg";
 
 
-// ============================================================
-// MOTION
-// ============================================================
+const missionHeroVideo = {
+  youtubeId: "Mqp9Y8X8gcA",
+  title: "Quality Health Africa Mission",
+};
 
 const fadeUp = {
   hidden: {
@@ -133,225 +131,284 @@ function Mission() {
 
       <Box as="main">
 
-        {/* =====================================================
-            HERO
-        ===================================================== */}
-        <Box
-          as="section"
-          px={{
-            base: 5,
-            sm: 7,
-            md: 10,
-            lg: 14,
-            xl: 16,
-          }}
-          pt={{
-            base: 16,
-            md: 20,
-            lg: 24,
-          }}
-          pb={{
-            base: 16,
-            md: 22,
-            lg: 26,
-          }}
-        >
-          <Box maxW="1500px" mx="auto">
+      {/* =====================================================
+    VIDEO HERO
+===================================================== */}
+<Box
+  as="section"
+  position="relative"
+  h={{
+    base: "78svh",
+    md: "82vh",
+    lg: "86vh",
+  }}
+  minH={{
+    base: "620px",
+    md: "650px",
+    lg: "700px",
+  }}
+  maxH="900px"
+  overflow="hidden"
+  bg="black"
+>
 
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
+  {/* =================================================
+      YOUTUBE VIDEO
+  ================================================= */}
+  <Box
+    position="absolute"
+    inset="0"
+    overflow="hidden"
+    pointerEvents="none"
+  >
+    <Box
+      as="iframe"
+      src={`https://www.youtube-nocookie.com/embed/${missionHeroVideo.youtubeId}?autoplay=1&controls=0&loop=1&playlist=${missionHeroVideo.youtubeId}&playsinline=1&rel=0&modestbranding=1&cc_load_policy=0`}
+      title={missionHeroVideo.title}
+      position="absolute"
+      top="50%"
+      left="50%"
+      w={{
+        base: "177.78vh",
+        md: "100vw",
+      }}
+      minW="100%"
+      h={{
+        base: "100%",
+        md: "56.25vw",
+      }}
+      minH="100%"
+      transform="translate(-50%, -50%)"
+      border="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      tabIndex="-1"
+    />
+  </Box>
+
+
+  {/* =================================================
+      DARK OVERLAY
+  ================================================= */}
+  <Box
+    position="absolute"
+    inset="0"
+    zIndex="1"
+    bg="rgba(0,0,0,0.25)"
+  />
+
+
+  {/* =================================================
+      CINEMATIC GRADIENT
+  ================================================= */}
+  <Box
+    position="absolute"
+    inset="0"
+    zIndex="2"
+    bgGradient="
+      linear(
+        to-r,
+        rgba(0,0,0,0.78) 0%,
+        rgba(0,0,0,0.55) 38%,
+        rgba(0,0,0,0.18) 72%,
+        rgba(0,0,0,0.10) 100%
+      )
+    "
+  />
+
+
+  {/* BOTTOM GRADIENT */}
+  <Box
+    position="absolute"
+    left="0"
+    right="0"
+    bottom="0"
+    h="45%"
+    zIndex="2"
+    bgGradient="
+      linear(
+        to-t,
+        rgba(0,0,0,0.65),
+        transparent
+      )
+    "
+  />
+
+
+  {/* =================================================
+      HERO CONTENT
+  ================================================= */}
+  <Flex
+    position="relative"
+    zIndex="5"
+    h="100%"
+    align="center"
+    px={{
+      base: 5,
+      sm: 7,
+      md: 10,
+      lg: 14,
+      xl: 16,
+    }}
+  >
+    <Box
+      maxW="1500px"
+      w="100%"
+      mx="auto"
+    >
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
+
+        {/* LABEL */}
+        <motion.div variants={fadeUp}>
+          <Flex
+            align="center"
+            gap={4}
+            mb={{
+              base: 6,
+              md: 8,
+            }}
+          >
+            <Text
+              color="white"
+              fontSize="xs"
+              fontWeight="800"
+              textTransform="uppercase"
+              letterSpacing="0.2em"
             >
-              {/* LABEL */}
-              <motion.div variants={fadeUp}>
-                <Flex
-                  align="center"
-                  gap={4}
-                  mb={{
-                    base: 8,
-                    md: 11,
-                  }}
-                >
-                  <Text
-                    color="qha.red"
-                    fontSize="xs"
-                    fontWeight="800"
-                    textTransform="uppercase"
-                    letterSpacing="0.2em"
-                  >
-                    Our Mission
-                  </Text>
+              Our Mission
+            </Text>
 
-                  <Box
-                    w="55px"
-                    h="2px"
-                    bg="qha.red"
-                  />
-                </Flex>
-              </motion.div>
+            <Box
+              w="55px"
+              h="2px"
+              bg="qha.red"
+            />
+          </Flex>
+        </motion.div>
 
 
-              {/* HEADLINE */}
-              <motion.div variants={fadeUp}>
-                <Heading
-                  as="h1"
-                  maxW="1150px"
-                  color="qha.black"
-                  fontSize={{
-                    base: "4xl",
-                    sm: "5xl",
-                    md: "6xl",
-                    lg: "7xl",
-                    xl: "8xl",
-                  }}
-                  lineHeight={{
-                    base: "1.04",
-                    md: "0.98",
-                  }}
-                  letterSpacing="-0.05em"
-                  fontWeight="700"
-                >
-                  Advancing health equity across Africa.
-                </Heading>
-              </motion.div>
+        {/* HEADLINE */}
+        <motion.div variants={fadeUp}>
+          <Heading
+            as="h1"
+            maxW={{
+              base: "600px",
+              md: "900px",
+              lg: "1100px",
+            }}
+            color="white"
+            fontSize={{
+              base: "4xl",
+              sm: "5xl",
+              md: "6xl",
+              lg: "7xl",
+              xl: "8xl",
+            }}
+            lineHeight={{
+              base: "1.03",
+              md: "0.98",
+            }}
+            letterSpacing="-0.05em"
+            fontWeight="700"
+          >
+            Advancing health equity across Africa.
+          </Heading>
+        </motion.div>
 
 
-              {/* INTRO */}
-              <motion.div variants={fadeUp}>
-                <Text
-                  mt={{
-                    base: 8,
-                    md: 10,
-                  }}
-                  ml={{
-                    base: 0,
-                    lg: "38%",
-                  }}
-                  maxW="760px"
-                  color="gray.600"
-                  fontSize={{
-                    base: "lg",
-                    md: "xl",
-                  }}
-                  lineHeight="1.8"
-                >
-                  We believe every person deserves access to quality
-                  healthcare regardless of geography, income, or social
-                  status.
-                </Text>
-              </motion.div>
-            </motion.div>
+        {/* DESCRIPTION */}
+        <motion.div variants={fadeUp}>
+          <Text
+            mt={{
+              base: 6,
+              md: 8,
+            }}
+            maxW="680px"
+            color="whiteAlpha.900"
+            fontSize={{
+              base: "md",
+              md: "xl",
+            }}
+            lineHeight="1.75"
+          >
+            We believe every person deserves access to quality
+            healthcare regardless of geography, income, or social
+            status.
+          </Text>
+        </motion.div>
 
-          </Box>
-        </Box>
+      </motion.div>
+    </Box>
+  </Flex>
 
 
-        {/* =====================================================
-            HERO IMAGE
-        ===================================================== */}
-        <Box
-          px={{
-            base: 5,
-            sm: 7,
-            md: 10,
-            lg: 14,
-            xl: 16,
-          }}
-          pb={{
-            base: 20,
-            md: 28,
-          }}
-        >
-          <Box maxW="1500px" mx="auto">
+  {/* =================================================
+      BOTTOM CAPTION
+  ================================================= */}
+  <Flex
+    position="absolute"
+    zIndex="5"
+    bottom={{
+      base: 6,
+      md: 8,
+    }}
+    left={{
+      base: 5,
+      sm: 7,
+      md: 10,
+      lg: 14,
+      xl: 16,
+    }}
+    right={{
+      base: 5,
+      sm: 7,
+      md: 10,
+      lg: 14,
+      xl: 16,
+    }}
+    justify="space-between"
+    align="center"
+  >
+    <Text
+      color="whiteAlpha.700"
+      fontSize="10px"
+      fontWeight="700"
+      textTransform="uppercase"
+      letterSpacing="0.16em"
+    >
+      Quality Health Africa
+    </Text>
 
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 35,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.2,
-              }}
-              transition={{
-                duration: 0.85,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <Box
-                position="relative"
-                overflow="hidden"
-                borderRadius={{
-                  base: "20px",
-                  md: "28px",
-                }}
-                h={{
-                  base: "420px",
-                  sm: "500px",
-                  md: "620px",
-                  lg: "700px",
-                }}
-              >
-                <Image
-                  src={missionHeroImage}
-                  alt="Quality Health Africa mission"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                  transition="transform 1s cubic-bezier(0.22, 1, 0.36, 1)"
-                  _hover={{
-                    transform: "scale(1.035)",
-                  }}
-                />
+    <Flex
+      display={{
+        base: "none",
+        md: "flex",
+      }}
+      align="center"
+      gap={3}
+    >
+      <Box
+        w="45px"
+        h="1px"
+        bg="whiteAlpha.600"
+      />
 
-                {/* OVERLAY */}
-                <Box
-                  position="absolute"
-                  inset="0"
-                  bgGradient="
-                    linear(
-                      to-t,
-                      rgba(0,0,0,0.45),
-                      rgba(0,0,0,0.05) 55%
-                    )
-                  "
-                />
+      <Text
+        color="whiteAlpha.700"
+        fontSize="10px"
+        fontWeight="700"
+        textTransform="uppercase"
+        letterSpacing="0.16em"
+      >
+        Health Equity In Action
+      </Text>
+    </Flex>
+  </Flex>
 
-                <Box
-                  position="absolute"
-                  left={{
-                    base: 5,
-                    md: 8,
-                  }}
-                  bottom={{
-                    base: 5,
-                    md: 8,
-                  }}
-                >
-                  <Text
-                    color="white"
-                    fontSize={{
-                      base: "sm",
-                      md: "md",
-                    }}
-                    fontWeight="700"
-                    letterSpacing="0.08em"
-                    textTransform="uppercase"
-                  >
-                    Health equity in action
-                  </Text>
-                </Box>
-              </Box>
-            </motion.div>
-
-          </Box>
-        </Box>
-
+</Box>
 
       {/* =====================================================
     FULL MISSION STATEMENT

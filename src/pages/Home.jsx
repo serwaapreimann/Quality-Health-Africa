@@ -12,7 +12,6 @@ function Home() {
       <Navbar />
       <Hero />
       <WhoWeAre />
-      <Challenge />
       <ProgramsSection />
       <Footer />
     </Box>

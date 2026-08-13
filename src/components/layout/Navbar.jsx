@@ -59,7 +59,7 @@ function Navbar() {
             <Image
               src={qhaLogo}
               alt="Quality Health Africa"
-              w={{ base: "145px", md: "170px", lg: "185px" }}
+              w={{ base: "145px", md: "185px", lg: "200px" }}
               h="auto"
             />
           </Link>
