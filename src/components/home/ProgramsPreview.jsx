@@ -38,14 +38,14 @@ const programs = [
     image: infrastructureImage,
     href: "/programs/healthcare-infrastructure",
   },
-  {
+  /*{
     number: "04",
     title: "Quality Health Africa Conference",
     description:
       "Connecting healthcare professionals, policymakers, innovators, community leaders, NGOs, corporate partners, and diaspora advocates to advance practical solutions for healthcare access across Africa.",
     image: conferenceImage,
     href: "/programs/conference",
-  },
+  }*/,
 ];
 
 function ProgramsSection() {
@@ -289,20 +289,6 @@ function ProgramsSection() {
           borderTop="1px solid"
           borderColor="gray.300"
         >
-          <Link
-            href="/programs"
-            color="qha.tealDark"
-            fontSize="sm"
-            fontWeight="800"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            _hover={{
-              color: "qha.orange",
-              textDecoration: "none",
-            }}
-          >
-            View All Programs &nbsp; →
-          </Link>
         </Flex>
       </Box>
     </Box>

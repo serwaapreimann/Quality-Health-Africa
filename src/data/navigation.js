@@ -5,7 +5,7 @@ const navigation = [
       { label: "Who We Are", href: "/about/who-we-are" },
       { label: "Mission", href: "/about/mission" },
       { label: "Founder", href: "/about/founder" },
-      { label: "Partners", href: "/about#partners" },
+      { label: "Partners", href: "/about-partners" },
     ],
   },
 
@@ -23,7 +23,7 @@ const navigation = [
       {
         label: "Hospital & Clinic Construction",
         href: "/programs/healthcare-infrastructure",
-      },
+      }, /*
       {
         label: "QHA Conference",
         href: "/conference",
@@ -31,7 +31,7 @@ const navigation = [
       {
         label: "Eva's Women's Health Initiative",
         href: "/programs/evas-womens-health",
-      },
+      }*/,
     ],
   },
 

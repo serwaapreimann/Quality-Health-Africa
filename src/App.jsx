@@ -12,6 +12,9 @@ import Challenge from "./pages/Challenge";
 import QuarterlyHealthFairs from "./pages/QuarterlyHealthFairs";
 import ClinicsHospitals from "./pages/ClinicsHospitals";
 import Stories from "./pages/OurStories";
+import Partners from "./pages/Partners";
+
+
 
 function App() {
   return (
@@ -47,6 +50,7 @@ function App() {
         element={<ClinicsHospitals />}
       />
       <Route path="/stories" element={<Stories />} />
+      <Route path="/about-partners" element={<Partners />} />
     </Routes>
   );
 }
